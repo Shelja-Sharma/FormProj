@@ -1,0 +1,17 @@
+[
+    {
+       "id":0,
+       "key":"toy",
+       "checked":false
+    },
+    {
+        "id":1,
+        "key":"cloths",
+        "checked":false
+     },
+     {
+        "id":2,
+        "key":"shoes",
+        "checked":false
+     }    
+]
