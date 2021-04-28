@@ -13,34 +13,30 @@ import CustomModal from '../../components/atoms/CustomModal/CustomModal'
 
 const DashBoard = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
-    // console.log("dashboard screen")
+    console.log("dashboard screen")
+
     const dispatch = useDispatch()
     const data = useSelector(state => state.dataRedu.allData)
 
     const [checkData, setCheckdata] = useState(data)
-
     const selector = useSelector(state => state.dataRedu.itemAdded)
-    console.log("Selected data is", selector)
-
     var bookVal = false;
     const addedItemVal = selector.length;
     const count_Val = useSelector(state => state.dataRedu.countArray)
-    console.log("count array is",count_Val)
-
-
+   
     const addToCartMethod = (itemIndex) => {
-        console.log("add to cart value",itemIndex)
+        // console.log("add to cart value",itemIndex)
         dispatch(AddItemAction(itemIndex))
     }
     const incrementMethod = (itemIndex) => {
-        console.log("itemindex", itemIndex)
+        // console.log("itemindex", itemIndex)
         dispatch(IncrementItemAction(itemIndex))
     }
     const decrementMethod = (itemIndex) => {
 
         count_Val.map((item, index) => {
             if (item.id == itemIndex) {
-               
+
                 if (item.countVal == 1) {
                     dispatch(RemoveItemAction(itemIndex))
                 }
@@ -52,7 +48,7 @@ const DashBoard = ({ navigation }) => {
 
     }
     const renderItemMethod = ({ item, index }) => {
-       
+
         return (
             <View key={index} style={styles.flatListItemStyle}>
                 <Image source={item.pic} resizeMode='contain' style={{ width: responsiveWidth(40), height: responsiveHeight(22) }} />
@@ -68,10 +64,10 @@ const DashBoard = ({ navigation }) => {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     {
                         selector.find((items, idx) => {
-                            if(items == item.id){
+                            if (items == item.id) {
                                 return true
                             }
-                           
+
                         }) ?
                             count_Val.map((items, id) => {
                                 if (items.id == item.id) {
@@ -87,7 +83,7 @@ const DashBoard = ({ navigation }) => {
                     {
 
                         selector.find((items, idx) => {
-                            if(items == item.id){
+                            if (items == item.id) {
                                 return true
                             }
                         })
@@ -131,35 +127,69 @@ const DashBoard = ({ navigation }) => {
         navigation.replace('Login')
     }
 
+    // const closeModalMethod = (value) => {
+    //     console.log("value from modal", value)
+    //     console.log("inside the close modal ")
+    //     const check = []
+    //     setModalVisible(false)
+
+    //     console.log("selected items are", selector)
+
+    //     for (let i = 0; i < data.length; i++) {
+    //         for (let j = 0; j < value.length; j++) {
+
+    //             if (value[j] == data[i].type) {
+    //                 check.push(data[i])
+    //             }
+    //         }
+    //     }
+    //     console.log("new array data is ", check);
+
+    //     if (check == '') {
+    //         setCheckdata(data)
+    //     }
+    //     else {
+    //         setCheckdata(check)
+    //     }
+    // }
+
+
     const closeModalMethod = (value) => {
         console.log("value from modal", value)
         console.log("inside the close modal ")
-        const check = []
-        setModalVisible(false)
 
-        console.log("selected items are", selector)
+        const check = data.filter(element => value.includes(element.type));
 
-        for (let i = 0; i < data.length; i++) {
-            for (let j = 0; j < value.length; j++) {
-
-                if (value[j] == data[i].type) {
-                    check.push(data[i])
-                }
-            }
-        }
         console.log("new array data is ", check);
-
-        if (check == '') {
+        if (!check.length) {
             setCheckdata(data)
         }
         else {
             setCheckdata(check)
         }
+
+        setModalVisible(false)
     }
+
+
+
+
+
+
+  
     return (
         <>
             <View style={styles.headingAreaStyle}>
+
+                {/* <TouchableOpacity style={{ backgroundColor: 'red', }} onPress={() => sortData(1)}>
+                    <Text>Sort A-Z</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => sortData(0)}>
+                    <Text>Sort Z-A</Text>
+                </TouchableOpacity> */}
+
                 <Text style={styles.headingStyle}>WELCOME</Text>
+
                 <TouchableOpacity style={{
                     position: 'absolute',
                     right: responsiveWidth(0),
@@ -198,7 +228,6 @@ const DashBoard = ({ navigation }) => {
                     data={checkData}
                     renderItem={renderItemMethod}
                     numColumns={2}
-
                     keyExtractor={item => item.id} />
             </View>
 
@@ -258,7 +287,7 @@ const styles = StyleSheet.create({
     },
     headingAreaStyle: {
         width: responsiveWidth(100),
-       // alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
         height: responsiveHeight(8),
         backgroundColor: "lightcoral"
@@ -266,7 +295,7 @@ const styles = StyleSheet.create({
     headingStyle: {
 
         fontSize: responsiveFontSize(3),
-        alignSelf:"center",
+        alignSelf: "center",
         color: "white",
 
     }

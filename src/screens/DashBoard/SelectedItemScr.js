@@ -240,9 +240,9 @@ const SelecteditemScr = ({ navigation }) => {
     let bool_val = false;
     const dispatch = useDispatch()
     const data = useSelector(state => state.dataRedu.itemAdded)
-    console.log("item added is", data)
+    // console.log("item added is", data)
     const countArr = useSelector(state => state.dataRedu.countArray)
-    console.log("count array is", countArr)
+    // console.log("count array is", countArr)
     let added_data = [];
     const Data_here = useSelector(state => state.dataRedu.allData)
     // console.log("DAta here is", Data_here)
@@ -259,7 +259,7 @@ const SelecteditemScr = ({ navigation }) => {
     }
 
     const incrementMethod = (itemIndex) => {
-        console.log("item index is selected", itemIndex)
+        // console.log("item index is selected", itemIndex)
         dispatch(IncrementItemAction(itemIndex))
     }
     const decrementMethod = (itemIndex) => {
@@ -316,26 +316,26 @@ const SelecteditemScr = ({ navigation }) => {
     const proceedToBuyMethod = async () => {
         const value = await AsyncStorage.getItem("AddressKey")
         console.log("Async value", value)
-        if(data.length >0){
+        if (data.length > 0) {
             if (value != null) {
                 navigation.navigate('PlaceOrder')
             }
             else {
                 navigation.navigate('AddressPlace')
             }
-        }else{
+        } else {
             alert("You have no item to place order")
         }
-        
+
     }
 
     return (
         <View style={{ flex: 1 }}>
             {
-                data.map((item,idx)=>{
-                    return(
-                        Data_here.map((items,index)=>{
-                            if(items.id == item){
+                data.map((item, idx) => {
+                    return (
+                        Data_here.map((items, index) => {
+                            if (items.id == item) {
                                 added_data.push(items)
                                 return bool_val = true
                             }

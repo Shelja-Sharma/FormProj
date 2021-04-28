@@ -17,17 +17,36 @@ export default class CustomModal extends React.Component {
            
         }
     }
-     onApplyMethod = () => {
+    //  onApplyMethod = () => {
 
-        var keys = this.state.data.map((itm) => itm.key)
-        var checks = this.state.data.map((t) => t.checked)
-        let Selected = []
-        for (let i = 0; i < checks.length; i++) {
-            if (checks[i] == true) {
-                Selected.push(keys[i])
-            }
-        }
-        this.props.modalClose(Selected)
+    //     var keys = this.state.data.map((itm) => itm.key)
+    //     var checks = this.state.data.map((t) => t.checked)
+    //     let Selected = []
+    //     for (let i = 0; i < checks.length; i++) {
+    //         if (checks[i] == true) {
+    //             Selected.push(keys[i])
+    //         }
+    //     }
+    //     this.props.modalClose(Selected)
+    // }
+    onApplyMethod = () => {
+        let checks = []
+        checks = this.state.data.filter((t) => {
+            if (t.checked)
+                return t.key
+        })
+        let selected = []
+        checks.map((obj) => selected.push(obj.key))
+
+        this.props.modalClose(selected)
+    }
+
+    checkedMethod = (id) => {
+        let newData = [...this.state.data]
+        const index = newData.findIndex(x => x.id === id)
+        let checkedValue = newData[index].checked
+        newData[index].checked = !checkedValue
+        this.setState({ data: newData })
     }
 
      checkedMethod = (id) => {
