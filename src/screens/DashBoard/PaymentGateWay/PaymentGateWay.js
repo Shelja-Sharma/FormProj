@@ -34,9 +34,6 @@ const s = StyleSheet.create({
 });
 
 
-
-
-
 export default class Payment extends Component {
 
   state = {

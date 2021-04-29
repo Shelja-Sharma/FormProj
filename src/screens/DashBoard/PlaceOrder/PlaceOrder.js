@@ -59,7 +59,7 @@ const PlaceOrder = ({ navigation }) => {
             }
 
             <View style={styles.headingAreaStyle}>
-                <TouchableOpacity onPress={() => navigation.navigate("CartItems")} style={{ position: 'absolute', elevation: 1, top: responsiveHeight(2), left: responsiveWidth(2) }}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: 'absolute', elevation: 1, top: responsiveHeight(2), left: responsiveWidth(2) }}>
                     <Ionicons name="arrow-back" size={30} color="white" />
                 </TouchableOpacity>
 

@@ -14,7 +14,7 @@ const CustomDrawerItem = (props)=>{
                     <Ionicons name = {iconname} size={30} color="white" />
                     <Text style = {styles.textStyle}>{name}</Text>
             </TouchableOpacity>
-            <View style = {{borderWidth:1,borderColor:'lightgray'}}/>
+            <View style = {{borderWidth:0.7,borderColor:'lightgray'}}/>
             
         </View>
     )    

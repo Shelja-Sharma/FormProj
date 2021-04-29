@@ -22,7 +22,7 @@ const SplashScreen = ({navigation})=>{
             else{
                 // navigation.replace('Dashboard')
                 // navigation.replace('Register')
-                navigation.navigate('DrawerNavi')
+                navigation.navigate('Register')
             } 
         }, 2000);
     }

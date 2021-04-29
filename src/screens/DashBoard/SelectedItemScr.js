@@ -240,12 +240,11 @@ const SelecteditemScr = ({ navigation }) => {
     let bool_val = false;
     const dispatch = useDispatch()
     const data = useSelector(state => state.dataRedu.itemAdded)
-    // console.log("item added is", data)
+  
     const countArr = useSelector(state => state.dataRedu.countArray)
-    // console.log("count array is", countArr)
+  
     let added_data = [];
     const Data_here = useSelector(state => state.dataRedu.allData)
-    // console.log("DAta here is", Data_here)
 
     const getData = () => {
         data.map((item, index) => {
@@ -259,7 +258,7 @@ const SelecteditemScr = ({ navigation }) => {
     }
 
     const incrementMethod = (itemIndex) => {
-        // console.log("item index is selected", itemIndex)
+       
         dispatch(IncrementItemAction(itemIndex))
     }
     const decrementMethod = (itemIndex) => {
@@ -346,7 +345,7 @@ const SelecteditemScr = ({ navigation }) => {
 
 
             <View style={styles.headingAreaStyle}>
-                <TouchableOpacity onPress={() => navigation.navigate("Dashboard")} style={{ position: 'absolute', top: responsiveHeight(2), left: responsiveWidth(2) }}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: 'absolute', top: responsiveHeight(2), left: responsiveWidth(2) }}>
                     <Ionicons name="arrow-back" size={30} color="white" />
                 </TouchableOpacity>
 
