@@ -35,6 +35,7 @@ export default class CustomModal extends React.Component {
             if (t.checked)
                 return t.key
         })
+        console.log("value in check", checks)
         let selected = []
         checks.map((obj) => selected.push(obj.key))
 
@@ -49,13 +50,13 @@ export default class CustomModal extends React.Component {
         this.setState({ data: newData })
     }
 
-     checkedMethod = (id) => {
-        const data = this.state.data
-        const index = data.findIndex(x => x.id === id)
-        // console.log("data in index is is", data[index].checked)
-        data[index].checked = !data[index].checked
-        this.setState(data)
-    }
+    //  checkedMethod = (id) => {
+    //     const data = this.state.data
+    //     const index = data.findIndex(x => x.id === id)
+    //     // console.log("data in index is is", data[index].checked)
+    //     data[index].checked = !data[index].checked
+    //     this.setState(data)
+    // }
     render(){
         return (
             <View>
