@@ -11,6 +11,7 @@ import SelecteditemScr from '../screens/DashBoard/SelectedItemScr';
 import AddressScreen from '../screens/DashBoard/AddAddress/AddressScreen';
 import PlaceOrder from '../screens/DashBoard/PlaceOrder/PlaceOrder';
 import Payment from '../screens/DashBoard/PaymentGateWay/PaymentGateWay';
+import DrawerNavi from './DrawerNavi';
 
 
 const Stack = createStackNavigator()
@@ -23,7 +24,9 @@ const StackNavi = () => {
                     <Stack.Screen name ="Splash" component = {SplashScreen} />
                     <Stack.Screen name="Register" component={ScreenSignUp} />
                     <Stack.Screen name="Login" component={ScreenSignIn} />
-                    <Stack.Screen name="Dashboard" component={DashBoard} />
+
+                    <Stack.Screen name="DrawerNavi" component = {DrawerNavi} />
+                    {/* <Stack.Screen name="Dashboard" component={DashBoard} /> */}
                     <Stack.Screen name="CartItems" component={SelecteditemScr} />
                     <Stack.Screen name="AddressPlace" component={AddressScreen} />
                     <Stack.Screen name="PlaceOrder" component={PlaceOrder} />

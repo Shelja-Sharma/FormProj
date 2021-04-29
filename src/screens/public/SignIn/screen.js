@@ -21,8 +21,8 @@ const ScreenSignIn = ({ navigation }) => {
                 setCheck(true)
                 const jsonValue = JSON.stringify(values)
                 await AsyncStorage.setItem("LoginKey", jsonValue)
-
-                navigation.replace("Dashboard")
+                 console.log("selector data is",selector)
+                navigation.replace("DrawerNavi",{userName:'shelja'})
                 // alert("Successfully Login ")
                 return
             }

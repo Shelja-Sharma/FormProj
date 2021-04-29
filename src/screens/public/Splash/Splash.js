@@ -17,10 +17,12 @@ const SplashScreen = ({navigation})=>{
         console.log("Async value",value)
         if(value != null)
             {
-                navigation.replace('Dashboard')
+                navigation.replace('DrawerNavi')
             }
             else{
-                navigation.replace('Dashboard')
+                // navigation.replace('Dashboard')
+                // navigation.replace('Register')
+                navigation.navigate('DrawerNavi')
             } 
         }, 2000);
     }

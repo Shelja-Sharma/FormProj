@@ -7,6 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { AddItemAction, addItemMethod, DecrementItemAction, IncrementItemAction, RemoveItemAction } from '../../redux/Action'
 import { useSelector } from 'react-redux'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import StarRating from 'react-native-star-rating';
 import CustomModal from '../../components/atoms/CustomModal/CustomModal'
 
@@ -23,7 +24,7 @@ const DashBoard = ({ navigation }) => {
     var bookVal = false;
     const addedItemVal = selector.length;
     const count_Val = useSelector(state => state.dataRedu.countArray)
-   
+
     const addToCartMethod = (itemIndex) => {
         // console.log("add to cart value",itemIndex)
         dispatch(AddItemAction(itemIndex))
@@ -171,12 +172,6 @@ const DashBoard = ({ navigation }) => {
         setModalVisible(false)
     }
 
-
-
-
-
-
-  
     return (
         <>
             <View style={styles.headingAreaStyle}>
@@ -187,6 +182,9 @@ const DashBoard = ({ navigation }) => {
                 <TouchableOpacity onPress={() => sortData(0)}>
                     <Text>Sort Z-A</Text>
                 </TouchableOpacity> */}
+                <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={{ position: 'absolute', left: responsiveHeight(1), top: responsiveHeight(1) }}>
+                    <Ionicons name="md-reorder-three-sharp" size={30} color="white" />
+                </TouchableOpacity>
 
                 <Text style={styles.headingStyle}>WELCOME</Text>
 
