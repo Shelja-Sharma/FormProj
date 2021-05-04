@@ -22,6 +22,7 @@
     "formik": "^2.2.6",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-context-menu-view": "^1.2.1",
     "react-native-credit-card-input": "^0.4.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-modal": "^11.10.0",

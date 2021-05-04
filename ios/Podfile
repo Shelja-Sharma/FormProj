@@ -20,6 +20,8 @@ target 'FormProj' do
 
   pod 'RNCCheckbox', :path => '../node_modules/@react-native-community/checkbox'
 
+  pod 'react-native-context-menu-view', :path => '../node_modules/react-native-context-menu-view'
+
   target 'FormProjTests' do
     inherit! :complete
     # Pods for testing

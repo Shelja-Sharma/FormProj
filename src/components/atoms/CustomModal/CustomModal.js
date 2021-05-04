@@ -10,11 +10,11 @@ const checkedData = require('../../../shared/json/checkItem.json')
 
 export default class CustomModal extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             data: checkedData,
-           
+
         }
     }
     //  onApplyMethod = () => {
@@ -57,7 +57,7 @@ export default class CustomModal extends React.Component {
     //     data[index].checked = !data[index].checked
     //     this.setState(data)
     // }
-    render(){
+    render() {
         return (
             <View>
                 <Modal style={styles.modalStyle}
@@ -65,22 +65,22 @@ export default class CustomModal extends React.Component {
                     isVisible={this.props.modalVisible} >
                     <View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: responsiveWidth(2), paddingVertical: responsiveHeight(2) }}>
                         <Text style={{ textAlign: "center", fontWeight: 'bold', fontSize: responsiveFontSize(2.5), color: 'lightcoral' }}>Category</Text>
-    
+
                         {
                             this.state.data.map((item, key) => {
                                 return (
                                     <TouchableOpacity key={key} style={{ flexDirection: 'row', alignItems: 'center' }}
                                         onPress={() => this.checkedMethod(item.id)}>
-                                        <CheckBox value={item.checked} onValueChange={() => {this.checkedMethod(item.id)}} />
-                                        <Text style={{ fontSize: responsiveFontSize(1.7),fontWeight:"bold" }}>{item.key.toUpperCase()}</Text>
+                                        <CheckBox value={item.checked} onValueChange={() => { this.checkedMethod(item.id) }} />
+                                        <Text style={{ fontSize: responsiveFontSize(1.7), fontWeight: "bold" }}>{item.key.toUpperCase()}</Text>
                                     </TouchableOpacity>
                                 )
                             })
 
                         }
-    
-                        <TouchableOpacity onPress={() =>{this.onApplyMethod()}} style={styles.applyStyle}>
-                            <Text style={{ fontSize: responsiveFontSize(2) ,fontWeight:"bold"}}>Apply</Text>
+
+                        <TouchableOpacity onPress={() => { this.onApplyMethod() }} style={styles.applyStyle}>
+                            <Text style={{ fontSize: responsiveFontSize(2), fontWeight: "bold" }}>Apply</Text>
                         </TouchableOpacity>
                     </View>
                 </Modal>
@@ -111,7 +111,7 @@ export default class CustomModal extends React.Component {
 //     }
 
 //     const checkedMethod = (id) => {
-       
+
 //         const index = data.findIndex(x => x.id === id)
 //         console.log("data in index is is", data[index].checked)
 

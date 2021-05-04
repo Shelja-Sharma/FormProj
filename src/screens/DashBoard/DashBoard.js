@@ -8,22 +8,26 @@ import { AddItemAction, addItemMethod, DecrementItemAction, IncrementItemAction,
 import { useSelector } from 'react-redux'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Entypo from 'react-native-vector-icons/Entypo'
 import StarRating from 'react-native-star-rating';
 import CustomModal from '../../components/atoms/CustomModal/CustomModal'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import SortingModal from '../../components/atoms/CustomModal/SortingModal'
 
 
 const DashBoard = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
-    console.log("dashboard screen")
-
+    const [sortModalVisible, setSortModalvisible] = useState(false)
     const dispatch = useDispatch()
     const data = useSelector(state => state.dataRedu.allData)
+ //   console.log("original data is",data)
 
     const [checkData, setCheckdata] = useState(data)
     const selector = useSelector(state => state.dataRedu.itemAdded)
-    var bookVal = false;
     const addedItemVal = selector.length;
     const count_Val = useSelector(state => state.dataRedu.countArray)
+    const [checkCount,setCheckCount] = useState(count_Val)
+
 
     const addToCartMethod = (itemIndex) => {
         // console.log("add to cart value",itemIndex)
@@ -122,6 +126,34 @@ const DashBoard = ({ navigation }) => {
         )
     }
 
+    //  let popupRef = React.createRef()
+    // const onShowPopUp = ()=>{
+    //     console.log("inside the onshow")
+    //     popupRef.show()
+    // }
+    const renderHeaderMethod = () => {
+        return (
+            <View style={styles.headerAreaStyle}>
+
+                <TouchableOpacity onPress={() => setSortModalvisible(!sortModalVisible)} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <MaterialCommunityIcons name="sort" size={20} color="lightcoral" />
+                    <Text style={styles.headerStyle}>Sort</Text>
+                </TouchableOpacity>
+
+                <View style={{ borderWidth: 0.5, height: responsiveHeight(5), borderColor: 'lightcoral' }} />
+
+                <TouchableOpacity
+                    style={{ flexDirection: 'row', alignItems: 'center' }}
+                    onPress={() => setModalVisible(!modalVisible)}>
+                    <MaterialCommunityIcons name="filter-variant" size={20} color="lightcoral" />
+
+                    <Text style={styles.headerStyle}>Filter</Text>
+                </TouchableOpacity>
+
+            </View>
+        )
+    }
+
     const LogOutMethod = async () => {
         await AsyncStorage.removeItem("LoginKey")
         //dispatch(LogOutAction())
@@ -154,34 +186,57 @@ const DashBoard = ({ navigation }) => {
     //     }
     // }
 
-
     const closeModalMethod = (value) => {
-        console.log("value from modal", value)
-        console.log("inside the close modal ")
 
         const check = data.filter(element => value.includes(element.type));
-
-        console.log("new array data is ", check);
         if (!check.length) {
             setCheckdata(data)
         }
         else {
             setCheckdata(check)
         }
-
         setModalVisible(false)
     }
+    const closeSortModal = (value) => {
+        console.log("sorting value", value)
+        setSortModalvisible(false)
+        if(value == "Star"){
+           const val = StarSort()
+           setCheckdata(val)
+        }  
+        else if(value == "LowToHigh")
+        {
+            const priceSort = priceLowToHighSort()
+            setCheckdata(priceSort)
+        }
+        else{
+            
+            setCheckdata(data)
+        }        
+    }
+    const StarSort = () =>{
+        let array = data;
+        const value =  array.sort((a, b) => {
+            return a.starVal - b.starVal;
+        });
+        return value
+    }
+
+     const priceLowToHighSort = ()=>{
+         console.log("Price LOw to HIght")
+        let newArr = data;
+        console.log("- new array value is",newArr)
+        const value =  newArr.sort((a, b) => {
+            return  b.price - a.price;
+        });
+        return value
+    }
+
 
     return (
         <>
             <View style={styles.headingAreaStyle}>
 
-                {/* <TouchableOpacity style={{ backgroundColor: 'red', }} onPress={() => sortData(1)}>
-                    <Text>Sort A-Z</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => sortData(0)}>
-                    <Text>Sort Z-A</Text>
-                </TouchableOpacity> */}
                 <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={{ position: 'absolute', left: responsiveHeight(1), top: responsiveHeight(1) }}>
                     <Ionicons name="md-reorder-three-sharp" size={30} color="white" />
                 </TouchableOpacity>
@@ -208,33 +263,23 @@ const DashBoard = ({ navigation }) => {
                     <MaterialIcons name="local-grocery-store" size={30} color="white" />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{
-                    position: 'absolute',
-                    right: responsiveWidth(14),
-                    top: responsiveHeight(2.5),
-                    marginRight: responsiveWidth(10)
-                }}
-                    onPress={() => setModalVisible(!modalVisible)}
-                >
-                    <AntDesign name="filter" size={30} color="white" />
-                </TouchableOpacity>
-
                 <Text style={styles.cartValueStyle}>{addedItemVal > 0 ? addedItemVal : ''}</Text>
             </View>
             <View style={styles.viewStyle}>
                 <FlatList
                     data={checkData}
+                    ListHeaderComponent={renderHeaderMethod}
                     renderItem={renderItemMethod}
                     numColumns={2}
-                    keyExtractor={item => item.id} />
+                    keyExtractor={item => item.id}
+                />
             </View>
 
             <CustomModal modalVisible={modalVisible} modalClose={(val) => closeModalMethod(val)} />
+            <SortingModal modalVisible={sortModalVisible} modalClose={(val) => closeSortModal(val)} />
         </>
     )
 }
-
-
 
 export default DashBoard
 
@@ -256,10 +301,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         backgroundColor: 'lightblue',
-        paddingHorizontal: responsiveWidth(2),
-        paddingVertical: responsiveHeight(2),
+        // paddingHorizontal: responsiveWidth(2),
+        // paddingVertical: responsiveHeight(2),
         marginBottom: responsiveHeight(3)
-
     },
     addToCartStyle: {
         alignItems: 'center',
@@ -295,13 +339,23 @@ const styles = StyleSheet.create({
         fontSize: responsiveFontSize(3),
         alignSelf: "center",
         color: "white",
-
+    },
+    headerStyle: {
+        fontSize: responsiveFontSize(2.5),
+        marginLeft: responsiveWidth(2),
+        color: "lightcoral"
+    },
+    headerAreaStyle: {
+        flex: 1,
+        marginBottom: responsiveHeight(2),
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        elevation: 6,
+        padding:responsiveHeight(1)
     }
 })
-
-
-
-
 
 // import AsyncStorage from '@react-native-async-storage/async-storage'
 // import React, { useEffect, useState } from 'react'
