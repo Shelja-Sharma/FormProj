@@ -7,48 +7,49 @@ import store from '../store';
 
 const initialValue = {
 
-
-    allData: [{
-        id: 101, title: 'Cute Doll', type: 'toy', pic: require('../../assets/images/image1.png'), starVal: 2.5, count: 1, price: 100, updatePrice: 100
-    },
-    {
-        id: 102, title: 'Cute Baby Elephant', type: 'toy', pic: require('../../assets/images/happiley.png'), starVal: 4.3, count: 1, price: 150, updatePrice: 150
-    }, {
-        id: 103, title: 'Winnie the Pooh', type: 'toy', pic: require('../../assets/images/image2.png'), starVal: 3, count: 1, price: 500, updatePrice: 500
-    },
-    {
-        id: 104, title: 'Tweety Bird', type: 'toy', pic: require('../../assets/images/image4.png'), starVal: 4.5, count: 1, price: 250, updatePrice: 250
-    },
-    {
-        id: 105, title: 'Little Cute Ganesha', type: 'toy', pic: require('../../assets/images/image3.png'), starVal: 2, count: 1, price: 300, updatePrice: 300
-    },
-    {
-        id: 106, title: 'Blue shoes', type: 'shoes', pic: require('../../assets/images/shoes1.png'), starVal: 2.5, count: 1, price: 200, updatePrice: 200
-    },
-    {
-        id: 107, title: 'White shoes', type: 'shoes', pic: require('../../assets/images/shoes2.png'), starVal: 5, count: 1, price: 400, updatePrice: 400
-    },
-    {
-        id: 108, title: 'Pink shoes', type: 'shoes', pic: require('../../assets/images/shoes3.png'), starVal: 1.5, count: 1, price: 100, updatePrice: 400
-    },
-    {
-        id: 109, title: 'Black shoes', type: 'shoes', pic: require('../../assets/images/shoes4.png'), starVal: 2.5, count: 1, price: 200, updatePrice: 200
-    },
-    {
-        id: 110, title: 'MultiColorshoes', type: 'shoes', pic: require('../../assets/images/shoes5.png'), starVal: 5, count: 1, price: 400, updatePrice: 400
-    },
-    {
-        id: 111, title: 'Brown shoes', type: 'shoes', pic: require('../../assets/images/shoes6.png'), starVal: 1.2, count: 1, price: 100, updatePrice: 100
-    },
-    {
-        id: 112, title: 'Blue Kurta', type: 'cloths', pic: require('../../assets/images/blue_kurta.png'), starVal: 2.5, count: 1, price: 200, updatePrice: 200
-    },
-    {
-        id: 113, title: 'Yellow Kurta', type: 'cloths', pic: require('../../assets/images/yellow_kurta.png'), starVal: 5, count: 1, price: 400, updatePrice: 400
-    },
-    {
-        id: 114, title: 'Black Kurta', type: 'cloths', pic: require('../../assets/images/black_kurta.png'), starVal: 1, count: 1, price: 100, updatePrice: 100
-    }
+    allData: [
+        {
+            id: 101, title: 'Cute Doll', type: 'toy', pic: require('../../assets/images/image1.png'), starVal: 2.5, count: 1, price: 100, updatePrice: 100
+        },
+        {
+            id: 102, title: 'Cute Baby Elephant', type: 'toy', pic: require('../../assets/images/happiley.png'), starVal: 4.3, count: 1, price: 150, updatePrice: 150
+        },
+        {
+            id: 103, title: 'Winnie the Pooh', type: 'toy', pic: require('../../assets/images/image2.png'), starVal: 3, count: 1, price: 500, updatePrice: 500
+        },
+        {
+            id: 104, title: 'Tweety Bird', type: 'toy', pic: require('../../assets/images/image4.png'), starVal: 4.5, count: 1, price: 250, updatePrice: 250
+        },
+        {
+            id: 105, title: 'Little Cute Ganesha', type: 'toy', pic: require('../../assets/images/image3.png'), starVal: 2, count: 1, price: 300, updatePrice: 300
+        },
+        {
+            id: 106, title: 'Blue shoes', type: 'shoes', pic: require('../../assets/images/shoes1.png'), starVal: 2.5, count: 1, price: 200, updatePrice: 200
+        },
+        {
+            id: 107, title: 'White shoes', type: 'shoes', pic: require('../../assets/images/shoes2.png'), starVal: 5, count: 1, price: 400, updatePrice: 400
+        },
+        {
+            id: 108, title: 'Pink shoes', type: 'shoes', pic: require('../../assets/images/shoes3.png'), starVal: 1.5, count: 1, price: 100, updatePrice: 400
+        },
+        {
+            id: 109, title: 'Black shoes', type: 'shoes', pic: require('../../assets/images/shoes4.png'), starVal: 2.5, count: 1, price: 200, updatePrice: 200
+        },
+        {
+            id: 110, title: 'MultiColorshoes', type: 'shoes', pic: require('../../assets/images/shoes5.png'), starVal: 5, count: 1, price: 400, updatePrice: 400
+        },
+        {
+            id: 111, title: 'Brown shoes', type: 'shoes', pic: require('../../assets/images/shoes6.png'), starVal: 1.2, count: 1, price: 100, updatePrice: 100
+        },
+        {
+            id: 112, title: 'Blue Kurta', type: 'cloths', pic: require('../../assets/images/blue_kurta.png'), starVal: 2.5, count: 1, price: 200, updatePrice: 200
+        },
+        {
+            id: 113, title: 'Yellow Kurta', type: 'cloths', pic: require('../../assets/images/yellow_kurta.png'), starVal: 5, count: 1, price: 400, updatePrice: 400
+        },
+        {
+            id: 114, title: 'Black Kurta', type: 'cloths', pic: require('../../assets/images/black_kurta.png'), starVal: 1, count: 1, price: 100, updatePrice: 100
+        }
     ],
     itemAdded: [],
     countArray: [],
@@ -71,7 +72,6 @@ const DataReducer = (state = { ...initialValue }, action) => {
                 return {
                     ...state,
                     itemAdded: [...state.itemAdded, action.payload],
-
                 }
             }
             else {
@@ -103,7 +103,7 @@ const DataReducer = (state = { ...initialValue }, action) => {
                 }
                 else { return item }
             })
-           
+
             return ({
                 ...state,
                 allData: UpdateArray
@@ -134,7 +134,6 @@ const DataReducer = (state = { ...initialValue }, action) => {
 }
 
 export default DataReducer
-
 
 
 

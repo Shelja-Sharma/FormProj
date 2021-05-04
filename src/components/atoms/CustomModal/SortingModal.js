@@ -24,6 +24,7 @@ export default function SortingModal(props) {
                         props.modalClose(value)
                     }
                 } value={value}
+
                 >
                     {/* <RadioButton.Item label="Default" value="default" labelStyle={{ fontWeight: "bold" }} /> */}
                     <RadioButton.Item label="Star Rating" value="Star" labelStyle={{ fontWeight: "bold" }} />

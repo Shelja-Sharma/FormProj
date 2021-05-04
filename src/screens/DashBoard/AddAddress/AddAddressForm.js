@@ -13,7 +13,6 @@ const AddAddressForm = (props) => {
         { name: 'name', label: 'Name' },
         { name: 'pinCode', label: 'PinCode', num: 'number' },
         { name: 'address', label: 'Address' },
-
     ]
 
     const validate = (values) => {
@@ -80,7 +79,7 @@ const AddAddressForm = (props) => {
                             mode="dialog"
                             itemStyle={{ backgroundColor: "grey", color: "blue", fontSize: 17 }}
                         >
-                            <Picker.Item label='Select your language' />
+                            <Picker.Item label='Select your State' />
                             <Picker.Item label="Himachal Pradesh" value="Himachal Pradesh" />
                             <Picker.Item label="Chandigarh" value="Chandigarh" />
                             <Picker.Item label="Haryana" value="Haryana" />

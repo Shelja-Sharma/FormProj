@@ -83,7 +83,7 @@ const PlaceOrder = ({ navigation }) => {
                 <Text style={styles.textStyle}>Deliver To:</Text>
                 <View style={{ width: responsiveWidth(70) }}>
                     <Text style={styles.textStyle}>{address_selector.name}, {address_selector.address},
-                 {address_selector.state}, {address_selector.pinCode}{address_selector.stateIs}</Text>
+                 {address_selector.state}, {address_selector.pinCode}</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => navigation.replace("AddressPlace")} style={styles.changeAddStyle}>
