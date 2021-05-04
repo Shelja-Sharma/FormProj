@@ -263,10 +263,10 @@ const SelecteditemScr = ({ navigation }) => {
     }
     const decrementMethod = (itemIndex) => {
 
-        countArr.map((item, index) => {
+        Data_here.map((item, index) => {
 
             if (item.id == itemIndex) {
-                if (item.countVal == 1) {
+                if (item.count == 1) {
                     dispatch(RemoveItemAction(itemIndex))
                 }
                 else {
@@ -277,6 +277,7 @@ const SelecteditemScr = ({ navigation }) => {
     }
 
     const renderItemMethod = ({ item, index }) => {
+        console.log("item selected are",item)
         return (
 
             <View style={styles.flatListItemStyle}>
@@ -286,17 +287,17 @@ const SelecteditemScr = ({ navigation }) => {
                         <Text style={{ fontSize: responsiveFontSize(2.5), color: 'lightcoral', fontWeight: 'bold' }}>{item.title}</Text>
                     </View>
 
-                    <Text style={styles.countTextStyle}>${countArr[index].amount}</Text>
+                    <Text style={styles.countTextStyle}>${item.updatePrice}</Text>
                 </View>
 
                 <View style={{ justifyContent: 'flex-end', position: 'absolute', top: responsiveHeight(1), right: responsiveWidth(3) }}>
                     <Text style={{ marginBottom: responsiveHeight(0.5), fontWeight: 'bold', color: 'lightcoral', fontSize: responsiveFontSize(2) }}>Qty:</Text>
-                    <View style={{ flexDirection: 'row', marginBottom: responsiveHeight(2), alignItems: 'center', justifyContent: 'center', backgroundColor: "lightcoral", paddingVertical: responsiveHeight(1) }}>
-                        <TouchableOpacity onPress={() => decrementMethod(item.id)}>
+                    <View style={{ flexDirection: 'row', marginBottom: responsiveHeight(2), alignItems: 'center', justifyContent: 'space-evenly', backgroundColor: "lightcoral", paddingVertical: responsiveHeight(1) }}>
+                        <TouchableOpacity onPress={() => decrementMethod(item.id)} >
                             <AntDesign name="minus" size={20} color="maroon" />
                         </TouchableOpacity>
 
-                        <Text style={styles.countTextStyle}>{countArr[index].countVal}</Text>
+                        <Text style={styles.countTextStyle}>{item.count}</Text>
 
                         <TouchableOpacity onPress={() => incrementMethod(item.id)}>
                             <AntDesign name="plus" size={20} color="maroon" />
@@ -422,7 +423,7 @@ const styles = StyleSheet.create({
     },
     addToCartStyle: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         flexDirection: 'row',
         // width: responsiveWidth(20),
         backgroundColor: 'lightcoral',

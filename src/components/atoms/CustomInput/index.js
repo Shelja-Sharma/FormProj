@@ -17,6 +17,7 @@ export default (props) => {
                     onBlur={handleBlur(name)}
                     style={styles.textInputStyle}
                     keyboardType= {keyBoardtype ? 'numeric': 'default'}
+                    maxLength = {keyBoardtype ? 6 :null}
                     secureTextEntry={!hide ? secureTextEntry : false}
                 />
 

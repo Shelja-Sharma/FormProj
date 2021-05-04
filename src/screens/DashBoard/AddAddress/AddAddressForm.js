@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import React, { useState } from 'react'
-import { Button, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import CustomInput from '../../../components/atoms/CustomInput'
 import { Picker } from '@react-native-community/picker';
@@ -8,12 +8,12 @@ import { Picker } from '@react-native-community/picker';
 const AddAddressForm = (props) => {
 
     const { onSubmit } = props
-    // const [stateIs, setState] = useState('')
+    const [topicValue, setTopicValue] = useState('Technical issue');
     const INPUT_FILEDS = [
         { name: 'name', label: 'Name' },
         { name: 'pinCode', label: 'PinCode', num: 'number' },
         { name: 'address', label: 'Address' },
-        { name: 'state', label: 'State' },
+
     ]
 
     const validate = (values) => {
@@ -30,6 +30,7 @@ const AddAddressForm = (props) => {
         if (!values.state) {
             errors.state = "Required"
         }
+
         return errors;
     };
 
@@ -42,12 +43,11 @@ const AddAddressForm = (props) => {
                 pinCode: '',
                 address: '',
                 state: '',
-                // stateIs: ''
 
             }}
             onSubmit={onSubmit}
         >
-            {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+            {({ handleChange, handleBlur, handleSubmit, values, errors, touched, setFieldValue }) => (
 
                 <ScrollView style={{ paddingHorizontal: responsiveWidth(6) }}>
 
@@ -55,7 +55,7 @@ const AddAddressForm = (props) => {
 
                         return (
                             <CustomInput
-                                key = {index}
+                                key={index}
                                 label={field.label}
                                 keyVal={index.toString}
                                 name={field.name}
@@ -70,22 +70,28 @@ const AddAddressForm = (props) => {
                         )
                     }
                     )}
-                    {/* <Picker
 
-                        selectedValue={values.stateIs}
+                    <Text style={styles.pickerHeading}>State</Text>
+                    <View style={styles.pickerViewStyle}>
+                        <Picker
+                            selectedValue={values.state}
+                            style={{ color: 'maroon' }}
+                            onValueChange={itemValue => setFieldValue('state', itemValue)}
+                            mode="dialog"
+                            itemStyle={{ backgroundColor: "grey", color: "blue", fontSize: 17 }}
+                        >
+                            <Picker.Item label='Select your language' />
+                            <Picker.Item label="Himachal Pradesh" value="Himachal Pradesh" />
+                            <Picker.Item label="Chandigarh" value="Chandigarh" />
+                            <Picker.Item label="Haryana" value="Haryana" />
+                        </Picker>
+                    </View>
 
-                        style={{ height: 50, width: responsiveWidth(80), backgroundColor: 'blue' }}
-                        onValueChange={values.stateIs}>
 
-                        <Picker.Item label="helo" value="hp" />
-                        <Picker.Item label="Delhi" value="delhi" />
-                        <Picker.Item label="Himachal" value="Himachal" />
-                    </Picker> */}
-
-                    <TouchableOpacity onPress={handleSubmit} style={{ marginBottom: responsiveHeight(70), backgroundColor: 'lightcoral', alignItems: 'center', paddingVertical: responsiveHeight(1.5) }}>
+                    <TouchableOpacity onPress={handleSubmit} style={styles.addAddressStyle}>
                         <Text style={{ fontSize: responsiveFontSize(2), color: 'white', fontWeight: 'bold' }}>Add Address</Text>
                     </TouchableOpacity>
-                    {/* <Button onPress={handleSubmit} title="Add Address" color="lightcoral" /> */}
+
                 </ScrollView>
             )}
         </Formik>
@@ -94,3 +100,25 @@ const AddAddressForm = (props) => {
 }
 
 export default AddAddressForm
+
+const styles = StyleSheet.create({
+    addAddressStyle: {
+        marginBottom: responsiveHeight(70),
+        backgroundColor: 'lightcoral',
+        alignItems: 'center',
+        paddingVertical: responsiveHeight(1.5)
+    },
+    pickerViewStyle: {
+        marginBottom: responsiveHeight(2),
+        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: 'gray',
+        borderRadius: 10,
+        color: 'maroon'
+    },
+    pickerHeading: {
+        fontSize: responsiveFontSize(2),
+        color: 'lightcoral',
+        fontWeight: 'bold'
+    }
+})

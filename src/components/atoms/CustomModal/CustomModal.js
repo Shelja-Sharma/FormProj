@@ -61,7 +61,7 @@ export default class CustomModal extends React.Component {
         return (
             <View>
                 <Modal style={styles.modalStyle}
-                    // onBackdropPress={() => this.props.modalClose()}
+                    // onBackdropPress={() => this.props.modalClose("default")}
                     isVisible={this.props.modalVisible} >
                     <View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: responsiveWidth(2), paddingVertical: responsiveHeight(2) }}>
                         <Text style={{ textAlign: "center", fontWeight: 'bold', fontSize: responsiveFontSize(2.5), color: 'lightcoral' }}>Category</Text>

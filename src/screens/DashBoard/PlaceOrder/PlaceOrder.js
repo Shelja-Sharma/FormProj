@@ -16,8 +16,20 @@ const PlaceOrder = ({ navigation }) => {
     const countArr = useSelector(state => state.dataRedu.countArray)
 
     let initial_val = 0
-    let sum = countArr.reduce((total, item) => { return total + item.amount }, initial_val)
 
+    let sum = data.reduce((total, item) => { 
+        let value
+        Data_here.map((items,idx)=>{
+             if(items.id == item)
+             {
+                 value =  total + items.updatePrice
+             }
+        })
+        return value
+    
+    
+    }, initial_val)
+   
     const PlaceOrderMethod = () => {
         navigation.navigate("Payment")
     }
@@ -31,12 +43,12 @@ const PlaceOrder = ({ navigation }) => {
                         <Text style={{ fontSize: responsiveFontSize(2.5), color: 'lightcoral', fontWeight: 'bold' }}>{item.title}</Text>
                     </View>
 
-                    <Text>Quantity: {countArr[index].countVal}</Text>
+                    <Text>Quantity: {item.count}</Text>
                 </View>
 
-                <View style={{ justifyContent: 'flex-end', alignItems: 'center', position: 'absolute', top: responsiveHeight(5), right: responsiveWidth(4) }}>
+                <View style={styles.priceStyle}>
                     <Text style={{ marginBottom: responsiveHeight(0.5), fontWeight: 'bold', color: 'lightcoral', fontSize: responsiveFontSize(2) }}>Amount</Text>
-                    <Text style={styles.countTextStyle}>${countArr[index].amount}</Text>
+                    <Text style={styles.countTextStyle}>${item.updatePrice}</Text>
                 </View>
 
             </View>
@@ -71,10 +83,10 @@ const PlaceOrder = ({ navigation }) => {
                 <Text style={styles.textStyle}>Deliver To:</Text>
                 <View style={{ width: responsiveWidth(70) }}>
                     <Text style={styles.textStyle}>{address_selector.name}, {address_selector.address},
-                 {address_selector.state}, {address_selector.pinCode}</Text>
+                 {address_selector.state}, {address_selector.pinCode}{address_selector.stateIs}</Text>
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.replace("AddressPlace")} style={{ position: 'absolute', borderWidth: 1, top: responsiveHeight(2), right: responsiveWidth(6), paddingHorizontal: responsiveWidth(1.5), paddingVertical: responsiveHeight(1) }}>
+                <TouchableOpacity onPress={() => navigation.replace("AddressPlace")} style={styles.changeAddStyle}>
                     <Text style={[styles.textStyle, { color: 'lightcoral' }]}>Change</Text>
                 </TouchableOpacity>
             </View>
@@ -152,4 +164,19 @@ const styles = StyleSheet.create({
         paddingVertical: responsiveHeight(2),
         margin: responsiveWidth(1)
     },
+    changeAddStyle:{
+        position: 'absolute',
+         borderWidth: 1,
+          top: responsiveHeight(2),
+         right: responsiveWidth(6),
+          paddingHorizontal: responsiveWidth(1.5),
+           paddingVertical: responsiveHeight(1) 
+    },
+    priceStyle:{
+        justifyContent: 'flex-end', 
+        alignItems: 'center', 
+        position: 'absolute', 
+        top: responsiveHeight(5),
+         right: responsiveWidth(4)
+    }
 })
